@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSK Imóveis - Seu imóvel ideal entre as montanhas e o mar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23228B22" width="1200" height="600"/><path fill="%2332CD32" d="M0 400 Q300 350 600 400 T1200 400 V600 H0 Z"/><circle fill="%23FFD700" cx="1000" cy="100" r="60"/><rect fill="%238B4513" x="100" y="300" width="200" height="150"/><polygon fill="%23DC143C" points="100,300 200,250 300,300"/><rect fill="%234169E1" x="150" y="350" width="30" height="50"/><rect fill="%234169E1" x="220" y="350" width="30" height="50"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        .property-card:hover { transform: translateY(-5px); }
+        .search-form { backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                    <span class="text-black font-bold text-lg">MSK</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">MSK Imóveis</h1>
+                    <p class="text-xs text-gray-600">Cunha-SP • Paraty-RJ</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Início</a>
+                <a href="#imoveis" class="text-gray-700 hover:text-blue-600 transition">Imóveis</a>
+                <a href="#anuncie" class="text-gray-700 hover:text-blue-600 transition">Anuncie</a>
+                <a href="#servicos" class="text-gray-700 hover:text-blue-600 transition">Serviços</a>
+                <a href="#sobre" class="text-gray-700 hover:text-blue-600 transition">Sobre</a>
+                <a href="#cidades" class="text-gray-700 hover:text-blue-600 transition">Cunha & Paraty</a>
+                <a href="#contato" class="text-gray-700 hover:text-blue-600 transition">Contato</a>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span class="text-blue-600 font-bold text-2xl">MSK</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">MSK Imóveis</h1>
+                <p class="text-xl md:text-2xl text-white mb-8">Seu imóvel ideal entre as montanhas e o mar</p>
+            </div>
+
+            <!-- Search Form -->
+            <div class="search-form bg-white/90 rounded-2xl p-6 max-w-4xl mx-auto shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+                    <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option>Comprar</option>
+                        <option>Alugar</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option>Cidade</option>
+                        <option>Cunha-SP</option>
+                        <option>Paraty-RJ</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option>Tipo de Imóvel</option>
+                        <option>Casa</option>
+                        <option>Apartamento</option>
+                        <option>Terreno</option>
+                        <option>Sítio</option>
+                        <option>Comercial</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option>Quartos</option>
+                        <option>1+</option>
+                        <option>2+</option>
+                        <option>3+</option>
+                        <option>4+</option>
+                    </select>
+                    <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option>Preço</option>
+                        <option>Até R$ 300.000</option>
+                        <option>R$ 300.000 - R$ 500.000</option>
+                        <option>R$ 500.000 - R$ 1.000.000</option>
+                        <option>Acima de R$ 1.000.000</option>
+                    </select>
+                </div>
+                <button class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-search mr-2"></i>Buscar Imóveis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="imoveis" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Imóveis em Destaque</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Descubra as melhores oportunidades imobiliárias em Cunha-SP e Paraty-RJ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Destaque</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Casa na Serra de Cunha</h3>
+                        <p class="text-gray-600 mb-4">Belíssima casa com vista panorâmica das montanhas, 3 quartos, jardim amplo</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Cunha-SP</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-blue-600">R$ 650.000</span>
+                                <p class="text-sm text-gray-500">ou financiado</p>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                Ver detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm">Novo</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Terreno em Paraty</h3>
+                        <p class="text-gray-600 mb-4">Terreno plano de 1.200m² próximo ao centro histórico, ideal para construção</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Paraty-RJ</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-blue-600">R$ 380.000</span>
+                                <p class="text-sm text-gray-500">à vista</p>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                Ver detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sítio com Cachoeira</h3>
+                        <p class="text-gray-600 mb-4">Propriedade rural de 5 hectares com cachoeira privativa e casa sede</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Cunha-SP</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-blue-600">R$ 1.200.000</span>
+                                <p class="text-sm text-gray-500">negociável</p>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                Ver detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition font-semibold">
+                    Ver Todos os Imóveis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advertise Section -->
+    <section id="anuncie" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Anuncie seu Imóvel</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Quer vender ou alugar seu imóvel com segurança e visibilidade? Anuncie com a MSK Imóveis!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-8">Por que escolher a MSK Imóveis?</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-calculator text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Avaliação Profissional</h4>
+                                    <p class="text-gray-600">Análise completa do seu imóvel para definir o preço ideal de mercado</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bullhorn text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Divulgação Ampla</h4>
+                                    <p class="text-gray-600">Anúncio nos principais portais imobiliários e redes sociais</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-camera text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Fotos e Vídeos Profissionais</h4>
+                                    <p class="text-gray-600">Material visual de alta qualidade para destacar seu imóvel</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-handshake text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Acompanhamento Completo</h4>
+                                    <p class="text-gray-600">Suporte em todas as etapas da negociação até o fechamento</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Cadastre seu Imóvel</h3>
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Seu nome completo" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="email" placeholder="Seu e-mail" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="tel" placeholder="Seu telefone" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option>Tipo de negócio</option>
+                                    <option>Venda</option>
+                                    <option>Aluguel</option>
+                                    <option>Venda e Aluguel</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option>Tipo de imóvel</option>
+                                    <option>Casa</option>
+                                    <option>Apartamento</option>
+                                    <option>Terreno</option>
+                                    <option>Sítio/Chácara</option>
+                                    <option>Comercial</option>
+                                </select>
+                                <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option>Cidade</option>
+                                    <option>Cunha-SP</option>
+                                    <option>Paraty-RJ</option>
+                                    <option>Outra cidade</option>
+                                </select>
+                            </div>
+                            <input type="text" placeholder="Endereço do imóvel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <textarea placeholder="Descreva seu imóvel (quartos, banheiros, área, diferenciais...)" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
+                                <p class="text-gray-600 mb-2">Envie fotos do seu imóvel</p>
+                                <p class="text-sm text-gray-500">Arraste arquivos aqui ou clique para selecionar</p>
+                                <input type="file" multiple accept="image/*" class="hidden">
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
+                                Enviar Informações
+                            </button>
+                        </form>
+                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <p class="text-sm text-yellow-800">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Demo:</strong> Este formulário é demonstrativo. Em um site real, as informações seriam processadas e o upload de fotos seria funcional.
+                            </p>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-gray-600 mb-4">Ou entre em contato diretamente:</p>
+                            <a href="https://wa.me/5512997727755?text=Ol%C3%A1!%20Gostaria%20de%20anunciar%20meu%20im%C3%B3vel%20com%20a%20MSK%20Im%C3%B3veis." target="_blank">
+  Fale conosco no WhatsApp
+</a>
+ 
+                               target="_blank" 
+                               class="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                Falar no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Construtora e Serviços</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Além de imóveis, oferecemos serviços completos de construção e sonorização</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Construtora MSK -->
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-hard-hat text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Construtora MSK</h3>
+                            <p class="text-gray-600">Construção personalizada</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Com vasta experiência na construção de casas e chalés em Cunha e região, oferecemos 
+                        projetos personalizados de acordo com seu terreno e orçamento, com atendimento completo 
+                        desde a planta até a entrega das chaves.
+                    </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-drafting-compass text-orange-600 mt-1"></i>
+                            <span class="text-gray-700">Projetos arquitetônicos personalizados</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-mountain text-orange-600 mt-1"></i>
+                            <span class="text-gray-700">Especialização em construções serranas</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-tools text-orange-600 mt-1"></i>
+                            <span class="text-gray-700">Acompanhamento de obra completo</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-key text-orange-600 mt-1"></i>
+                            <span class="text-gray-700">Entrega no prazo com qualidade garantida</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">Destaque Especial</h4>
+                        <p class="text-gray-600 text-sm">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            Construímos no terreno que você comprou através da MSK Imóveis, 
+                            oferecendo um pacote completo para realizar seu sonho!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-home text-orange-600"></i>
+                            </div>
+                            <p class="text-sm text-gray-600">Casas</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-mountain text-orange-600"></i>
+                            </div>
+                            <p class="text-sm text-gray-600">Chalés</p>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-orange-600 text-white py-3 px-6 rounded-lg hover:bg-orange-700 transition font-semibold">
+                        Solicitar Orçamento de Construção
+                    </button>
+                </div>
+
+                <!-- Sonorização -->
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-volume-up text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Sonorização de Ambientes</h3>
+                            <p class="text-gray-600">Tecnologia e conforto acústico</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Oferecemos serviços especializados de sonorização ambiente através de parceiros 
+                        qualificados, proporcionando experiências sonoras únicas para diversos tipos de ambiente.
+                    </p>
+
+                    <div class="bg-purple-100 rounded-xl p-6 mb-6 text-center">
+                        <h4 class="font-semibold text-purple-800 mb-2">Frase Destaque</h4>
+                        <p class="text-purple-700 italic">
+                            "Transforme seu espaço com conforto acústico e tecnologia de ponta."
+                        </p>
+                    </div>
+
+                    <h4 class="font-semibold text-gray-800 mb-4">Tipos de Serviços:</h4>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-home text-purple-600 mt-1"></i>
+                            <div>
+                                <span class="text-gray-700 font-medium">Residências</span>
+                                <p class="text-sm text-gray-600">Som ambiente para salas, quartos e áreas de lazer</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-store text-purple-600 mt-1"></i>
+                            <div>
+                                <span class="text-gray-700 font-medium">Comércios</span>
+                                <p class="text-sm text-gray-600">Sistemas profissionais para lojas e restaurantes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-church text-purple-600 mt-1"></i>
+                            <div>
+                                <span class="text-gray-700 font-medium">Igrejas</span>
+                                <p class="text-sm text-gray-600">Sonorização para cultos e eventos religiosos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-cog text-purple-600 mt-1"></i>
+                            <div>
+                                <span class="text-gray-700 font-medium">Automação Residencial</span>
+                                <p class="text-sm text-gray-600">Integração com sistemas inteligentes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-microphone text-purple-600"></i>
+                            </div>
+                            <p class="text-sm text-gray-600">Áudio Profissional</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-wifi text-purple-600"></i>
+                            </div>
+                            <p class="text-sm text-gray-600">Tecnologia Smart</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/5512997727755?text=Olá! Gostaria de um orçamento para sonorização de ambiente." 
+                       target="_blank" 
+                       class="w-full inline-flex items-center justify-center bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition font-semibold">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Orçamento Sonorização
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Sobre a MSK Imóveis</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Com anos de experiência no mercado imobiliário da região serrana, a MSK Imóveis oferece 
+                            atendimento personalizado e conhecimento profundo das características únicas de Cunha-SP e Paraty-RJ.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-blue-600 mt-1"></i>
+                                <span class="text-gray-700">Atendimento humanizado e transparente</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-blue-600 mt-1"></i>
+                                <span class="text-gray-700">Conhecimento especializado da região</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-blue-600 mt-1"></i>
+                                <span class="text-gray-700">Apoio completo em processos de compra e venda</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-blue-600 mt-1"></i>
+                                <span class="text-gray-700">Regularização e documentação de imóveis</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-100 rounded-2xl p-8">
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-home text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Nossa Missão</h3>
+                            <p class="text-gray-600">
+                                Conectar pessoas aos seus imóveis dos sonhos, oferecendo experiências excepcionais 
+                                entre as belezas naturais da serra e do mar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section id="cidades" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Cunha & Paraty</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Cunha -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-mountain text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Cunha-SP</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6">
+                        Localizada na Serra da Mantiqueira, Cunha oferece clima serrano, natureza exuberante 
+                        e tranquilidade única. Conhecida pelo turismo rural, cerâmica artesanal e paisagens deslumbrantes.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-thermometer-half text-green-600 mr-3"></i>
+                            <span class="text-gray-700">Clima serrano agradável o ano todo</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-leaf text-green-600 mr-3"></i>
+                            <span class="text-gray-700">Natureza preservada e ar puro</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-tractor text-green-600 mr-3"></i>
+                            <span class="text-gray-700">Turismo rural em crescimento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paraty -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-anchor text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Paraty-RJ</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6">
+                        Patrimônio histórico e cultural da humanidade, Paraty combina arquitetura colonial preservada 
+                        com belezas naturais únicas, oferecendo excelente potencial turístico e imobiliário.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-landmark text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Patrimônio histórico mundial</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Proximidade com Cunha (45 min)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Alto potencial de valorização</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Entre em Contato</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Fale Conosco</h3>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-blue-600 mr-4 w-5"></i>
+                                <span class="text-gray-700">(12) 3111-2222</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-4 w-5"></i>
+                                <span class="text-gray-700">contato@mskimoveis.com.br</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-600 mr-4 w-5"></i>
+                                <span class="text-gray-700">Centro de Cunha-SP</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h4 class="font-semibold text-gray-800 mb-4">Horário de Atendimento</h4>
+                            <div class="space-y-2 text-gray-600">
+                                <p>Segunda a Sexta: 8h às 18h</p>
+                                <p>Sábado: 8h às 14h</p>
+                                <p>Domingo: Plantão WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Envie sua Mensagem</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Seu nome" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Seu e-mail" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Seu telefone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <textarea placeholder="Sua mensagem" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <p class="text-sm text-yellow-800">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Demo:</strong> Este formulário é apenas demonstrativo. Em um site real, seria necessário configurar um sistema de backend para processar as mensagens.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">MSK</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">MSK Imóveis</h3>
+                            <p class="text-sm text-gray-400">Cunha-SP • Paraty-RJ</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Seu imóvel ideal entre as montanhas e o mar.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-white transition">Início</a>
+                        <a href="#imoveis" class="block text-gray-400 hover:text-white transition">Catálogo</a>
+                        <a href="#anuncie" class="block text-gray-400 hover:text-white transition">Anuncie</a>
+                        <a href="#servicos" class="block text-gray-400 hover:text-white transition">Serviços</a>
+                        <a href="#sobre" class="block text-gray-400 hover:text-white transition">Sobre</a>
+                        <a href="#contato" class="block text-gray-400 hover:text-white transition">Contato</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-pink-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2025 MSK Imóveis — Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5512996468088?text=Olá! Gostaria de saber mais sobre os imóveis da MSK Imóveis." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50">
+        <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-form button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Funcionalidade de busca ativada! Em um site real, isso filtraria os imóveis conforme os critérios selecionados.');
+        });
+
+        // Property details buttons
+        document.querySelectorAll('.property-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const propertyName = this.closest('.property-card').querySelector('h3').textContent;
+                alert(`Visualizando detalhes de: ${propertyName}\n\nEm um site real, isso abriria uma página com fotos, descrição completa, localização no mapa e informações detalhadas do imóvel.`);
+            });
+        });
+
+        // Contact form
+        document.querySelector('#contato form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.\n\nNota: Este é um formulário demonstrativo. Em um site real, seria necessário configurar um sistema backend para processar as mensagens.');
+        });
+
+        // Advertise form
+        document.querySelector('#anuncie form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Informações do imóvel enviadas com sucesso! Nossa equipe entrará em contato em breve para agendar a avaliação.\n\nNota: Este é um formulário demonstrativo.');
+        });
+
+        // Construction quote button
+        document.querySelector('.bg-orange-600').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecionando para orçamento de construção!\n\nEm um site real, isso abriria um formulário específico ou direcionaria para WhatsApp com mensagem personalizada sobre construção.');
+        });
+
+        // File upload simulation
+        document.querySelector('#anuncie input[type="file"]').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                alert(`${files.length} foto(s) selecionada(s)!\n\nEm um site real, as fotos seriam enviadas para o servidor e processadas.`);
+            }
+        });
+
+        // Upload area click
+        document.querySelector('#anuncie .border-dashed').addEventListener('click', function() {
+            document.querySelector('#anuncie input[type="file"]').click();
+        });
+
+        // Mobile menu toggle (basic implementation)
+        document.querySelector('header button').addEventListener('click', function() {
+            alert('Menu mobile ativado! Em uma implementação completa, isso abriria um menu lateral responsivo.');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                header.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9668d6efa36a1595',t:'MTc1Mzc1MjUwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
