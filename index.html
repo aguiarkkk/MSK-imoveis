@@ -10,12 +10,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23228B22" width="1200" height="600"/><path fill="%2332CD32" d="M0 400 Q300 350 600 400 T1200 400 V600 H0 Z"/><circle fill="%23FFD700" cx="1000" cy="100" r="60"/><rect fill="%238B4513" x="100" y="300" width="200" height="150"/><polygon fill="%23DC143C" points="100,300 200,250 300,300"/><rect fill="%234169E1" x="150" y="350" width="30" height="50"/><rect fill="%234169E1" x="220" y="350" width="30" height="50"/></svg>');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('IMG/primeira-imagem.png');
             background-size: cover;
             background-position: center;
         }
         .property-card:hover { transform: translateY(-5px); }
         .search-form { backdrop-filter: blur(10px); }
+
+        /* Qualidade de vida */
+        :root { scroll-behavior: smooth; }
+        /* Evita que o header fixo cubra o início das âncoras */
+        [id] { scroll-margin-top: 92px; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -31,6 +36,8 @@
                     <p class="text-xs text-gray-600">Cunha-SP • Paraty-RJ</p>
                 </div>
             </div>
+
+            <!-- Menu desktop -->
             <div class="hidden md:flex space-x-6">
                 <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Início</a>
                 <a href="#imoveis" class="text-gray-700 hover:text-blue-600 transition">Imóveis</a>
@@ -40,18 +47,66 @@
                 <a href="#cidades" class="text-gray-700 hover:text-blue-600 transition">Cunha & Paraty</a>
                 <a href="#contato" class="text-gray-700 hover:text-blue-600 transition">Contato</a>
             </div>
-            <button class="md:hidden text-gray-700">
+
+            <!-- Botão hamburguer -->
+            <button class="md:hidden text-gray-700" id="btn-menu" aria-controls="menu-mobile" aria-expanded="false" aria-label="Abrir menu">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </nav>
+
+        <!-- Menu mobile -->
+        <div id="menu-mobile" class="md:hidden hidden border-t bg-white">
+            <div class="container mx-auto px-4 py-3 grid gap-3">
+                <a href="#home"     class="block text-gray-700 hover:text-blue-600 transition">Início</a>
+                <a href="#imoveis"  class="block text-gray-700 hover:text-blue-600 transition">Imóveis</a>
+                <a href="#anuncie"  class="block text-gray-700 hover:text-blue-600 transition">Anuncie</a>
+                <a href="#servicos" class="block text-gray-700 hover:text-blue-600 transition">Serviços</a>
+                <a href="#sobre"    class="block text-gray-700 hover:text-blue-600 transition">Sobre</a>
+                <a href="#cidades"  class="block text-gray-700 hover:text-blue-600 transition">Cunha & Paraty</a>
+                <a href="#contato"  class="block text-gray-700 hover:text-blue-600 transition">Contato</a>
+            </div>
+        </div>
     </header>
+
+    <script>
+    // Toggle do menu mobile e fechamento automático após clique
+    (function(){
+      const btn = document.getElementById('btn-menu');
+      const panel = document.getElementById('menu-mobile');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', () => {
+        const isOpen = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      // Fecha ao clicar em um link do menu mobile
+      panel.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        panel.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+
+      // Opcional: altera leve opacidade do header ao rolar
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 8) {
+          header.classList.add('backdrop-blur-sm', 'bg-white/95');
+        } else {
+          header.classList.remove('backdrop-blur-sm', 'bg-white/95');
+        }
+      });
+    })();
+    </script>
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-20">
         <div class="container mx-auto px-4 text-center">
             <div class="mb-8">
-                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span class="text-blue-600 font-bold text-2xl">MSK</span>
+                <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <img src="IMG/MSKLOGO2.png" alt="Logo MSK" class="h-16">
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">MSK Imóveis</h1>
                 <p class="text-xl md:text-2xl text-white mb-8">Seu imóvel ideal entre as montanhas e o mar</p>
@@ -92,9 +147,14 @@
                         <option>Acima de R$ 1.000.000</option>
                     </select>
                 </div>
-                <button class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
-                    <i class="fas fa-search mr-2"></i>Buscar Imóveis
-                </button>
+               <button
+  class="w-full text-white py-3 px-6 rounded-lg transition font-semibold"
+  style="background-color: #678e40"
+  onmouseover="this.style.backgroundColor='#4a6a30'"
+  onmouseout="this.style.backgroundColor='#678e40'"
+>
+  <i class="fas fa-search mr-2"></i>Buscar Imóveis
+</button>
             </div>
         </div>
     </section>
@@ -108,47 +168,327 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Property 1 -->
-                <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                            </svg>
-                        </div>
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Destaque</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Casa na Serra de Cunha</h3>
-                        <p class="text-gray-600 mb-4">Belíssima casa com vista panorâmica das montanhas, 3 quartos, jardim amplo</p>
-                        <div class="flex items-center text-gray-500 mb-4">
-                            <i class="fas fa-map-marker-alt mr-2"></i>
-                            <span>Cunha-SP</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-2xl font-bold text-blue-600">R$ 650.000</span>
-                                <p class="text-sm text-gray-500">ou financiado</p>
-                            </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                Ver detalhes
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- CARD DO IMÓVEL -->
+<div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+  <div class="h-48 bg-cover bg-center relative" style="background-image: url(IMG/img-terreno3.png);">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <!-- Ícone removido pois estava incompleto -->
+    </div>
+    <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Destaque</div>
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Terreno em Paraty</h3>
+    <p class="text-gray-600 mb-4">Belíssima casa com vista panorâmica das montanhas, 3 quartos, jardim amplo</p>
+
+    <div class="flex items-center text-gray-500 mb-4">
+      <i class="fas fa-map-marker-alt mr-2"></i>
+      <span>Cunha-SP</span>
+    </div>
+
+    <div class="flex justify-between items-center">
+      <div>
+        <span class="text-2xl font-bold" style="color: #678e40;">R$ 650.000</span>
+        <p class="text-sm text-gray-500">ou financiado</p>
+      </div>
+
+      <!-- Botão para abrir o modal -->
+      <button
+        class="btn-detalhes text-white px-4 py-2 rounded-lg transition"
+        style="background-color: #678e40;"
+        onmouseover="this.style.backgroundColor='#567535'"
+        onmouseout="this.style.backgroundColor='#678e40'">
+        Ver detalhes
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-detalhes" class="fixed inset-0 z-50 hidden">
+  <!-- Fundo escuro -->
+  <div class="absolute inset-0 bg-black/60" data-close-modal></div>
+
+  <!-- Caixa do modal -->
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-xl md:max-w-3xl shadow-2xl overflow-hidden">
+      <!-- Cabeçalho -->
+      <div class="flex items-center justify-between px-6 py-4 border-b">
+        <h3 id="md-titulo" class="text-lg md:text-xl font-semibold text-gray-900">Detalhes do Imóvel</h3>
+        <button class="text-gray-500 hover:text-gray-700 text-2xl leading-none" data-close-modal>&times;</button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="p-0 md:p-6 max-h-[78vh] overflow-auto">
+        <!-- CAPA (click -> abre galeria) -->
+        <div class="p-4 md:pt-0">
+          <div class="relative">
+            <img id="md-capa" src="" alt="" class="w-full h-56 md:h-80 object-cover rounded-xl cursor-pointer hidden">
+            <button id="md-ver-fotos"
+                    class="hidden absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-sm shadow hover:bg-white transition">
+              Ver fotos
+            </button>
+          </div>
+        </div>
+
+        <!-- GALERIA (carrossel) -->
+        <div id="md-galeria" class="hidden">
+          <div class="relative">
+            <!-- trilho -->
+            <div id="md-track"
+                 class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth gap-0">
+              <!-- slides injetados via JS -->
+            </div>
+
+            <!-- controles -->
+            <button id="md-prev"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow hover:bg-white hidden">
+              &#10094;
+            </button>
+            <button id="md-next"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow hover:bg-white hidden">
+              &#10095;
+            </button>
+
+            <!-- bolinhas -->
+            <div id="md-dots" class="flex items-center justify-center gap-2 py-3"></div>
+          </div>
+        </div>
+
+        <!-- INFOS -->
+        <div class="px-4 md:px-6 pb-6">
+          <div id="md-infos"
+               class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-gray-700">
+            <!-- preenchido via JS -->
+          </div>
+
+          <!-- Conteúdo adicional opcional -->
+          <div id="md-conteudo" class="mt-5 space-y-2 text-[15px] text-gray-700">
+            <!-- Você pode manter seus parágrafos aqui se quiser -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Rodapé -->
+      <div class="px-6 py-4 border-t flex justify-end gap-3 bg-gray-50">
+        <button class="px-4 py-2 rounded-lg border hover:bg-gray-100" data-close-modal>Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const modal    = document.getElementById('modal-detalhes');
+  const capa     = document.getElementById('md-capa');
+  const verFotos = document.getElementById('md-ver-fotos');
+  const titulo   = document.getElementById('md-titulo');
+  const infos    = document.getElementById('md-infos');
+
+  // Galeria
+  const galeria  = document.getElementById('md-galeria');
+  const track    = document.getElementById('md-track');
+  const dotsWrap = document.getElementById('md-dots');
+  const btnPrev  = document.getElementById('md-prev');
+  const btnNext  = document.getElementById('md-next');
+
+  let imagensAtuais = []; // array de URLs
+  let slideW = 0;
+
+  function montarInfos(data){
+    const items = [];
+    if (data.local) {
+      items.push(`
+        <div class="rounded-xl border px-3 py-2">
+          <div class="text-[11px] uppercase tracking-wide text-gray-500">Local</div>
+          <div class="font-medium text-gray-900">${data.local}</div>
+        </div>`);
+    }
+    if (data.preco) {
+      items.push(`
+        <div class="rounded-xl border px-3 py-2">
+          <div class="text-[11px] uppercase tracking-wide text-gray-500">Preço</div>
+          <div class="font-semibold text-emerald-600">${data.preco}</div>
+        </div>`);
+    }
+    if (data.quartos || data.metragem) {
+      const texto = data.quartos ? `${data.quartos} quartos` : `${data.metragem}`;
+      items.push(`
+        <div class="rounded-xl border px-3 py-2">
+          <div class="text-[11px] uppercase tracking-wide text-gray-500">Detalhe</div>
+          <div class="font-medium text-gray-900">${texto}</div>
+        </div>`);
+    }
+    infos.innerHTML = items.join('');
+  }
+
+  function montarGaleria(urls){
+    imagensAtuais = (urls || []).filter(Boolean);
+    // limpar
+    track.innerHTML = '';
+    dotsWrap.innerHTML = '';
+    btnPrev.classList.toggle('hidden', imagensAtuais.length <= 1);
+    btnNext.classList.toggle('hidden', imagensAtuais.length <= 1);
+
+    // criar slides
+    imagensAtuais.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'snap-center shrink-0 w-full';
+      slide.innerHTML = `
+        <img src="${src}" alt="Foto ${i+1}"
+             class="w-full h-64 md:h-96 object-cover select-none pointer-events-auto">`;
+      track.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 aria-[current=true]:bg-gray-800';
+      dot.setAttribute('aria-label', 'Ir para foto ' + (i+1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    // medir largura
+    requestAnimationFrame(() => {
+      slideW = track.clientWidth;
+      atualizarDots();
+    });
+  }
+
+  function getIndex(){
+    const x = track.scrollLeft;
+    const i = Math.round(x / Math.max(slideW, 1));
+    return Math.min(Math.max(i, 0), Math.max(imagensAtuais.length - 1, 0));
+  }
+
+  function goTo(i){
+    track.scrollTo({ left: i * slideW, behavior: 'smooth' });
+  }
+
+  function atualizarDots(){
+    const i = getIndex();
+    [...dotsWrap.children].forEach((d, idx) => {
+      d.setAttribute('aria-current', idx === i ? 'true' : 'false');
+    });
+  }
+
+  // Navegação
+  btnPrev.addEventListener('click', () => goTo(Math.max(getIndex() - 1, 0)));
+  btnNext.addEventListener('click', () => goTo(Math.min(getIndex() + 1, imagensAtuais.length - 1)));
+  track.addEventListener('scroll', () => {
+    // debounced via requestAnimationFrame
+    if (track._rAF) cancelAnimationFrame(track._rAF);
+    track._rAF = requestAnimationFrame(atualizarDots);
+  });
+  window.addEventListener('resize', () => {
+    slideW = track.clientWidth;
+    goTo(getIndex()); // re-alinha
+  });
+
+  // Ação de abrir modal
+  function abrirModal(data){
+    // Título
+    titulo.textContent = data.titulo || 'Detalhes do Imóvel';
+
+    // Infos
+    montarInfos(data);
+
+    // CAPA
+    if (data.img) {
+      capa.src = data.img;
+      capa.alt = data.titulo || 'Capa do imóvel';
+      capa.classList.remove('hidden');
+      verFotos.classList.remove('hidden');
+    } else {
+      capa.classList.add('hidden');
+      verFotos.classList.add('hidden');
+    }
+
+    // GALERIA (capa + demais fotos)
+    const listaFotos = Array.isArray(data.fotos) ? data.fotos : [];
+    const urls = [data.img, ...listaFotos].filter((v, idx, arr) => v && arr.indexOf(v) === idx);
+    montarGaleria(urls);
+
+    // Mostrar apenas a CAPA no início
+    galeria.classList.add('hidden');
+
+    modal.classList.remove('hidden');
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  // Trocar capa -> galeria
+  function revelarGaleria(){
+    if (imagensAtuais.length > 0) {
+      galeria.classList.remove('hidden');
+      // rolar para a primeira (que é a capa)
+      goTo(0);
+      // esconder capa e botão
+      capa.classList.add('hidden');
+      verFotos.classList.add('hidden');
+    }
+  }
+  capa.addEventListener('click', revelarGaleria);
+  verFotos.addEventListener('click', revelarGaleria);
+
+  // Fechar
+  function fecharModal(){
+    modal.classList.add('hidden');
+    document.documentElement.style.overflow = '';
+  }
+  modal.addEventListener('click', (e) => {
+    if (e.target.matches('[data-close-modal]')) fecharModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('hidden') && e.key === 'Escape') fecharModal();
+  });
+
+  // Extrair dados do card
+  function extrairDoCard(botao){
+    const card = botao.closest('.property-card');
+    // tenta coletar várias fotos: data-fotos="url1,url2,url3"
+    const datasetFotos = (card?.dataset?.fotos || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    // fallback: procura <img> dentro do card
+    const imgsCard = [...card.querySelectorAll('img')]
+      .map(el => el.getAttribute('src'))
+      .filter(Boolean);
+
+    return {
+      titulo:   card.querySelector('h3')?.textContent.trim(),
+      local:    card.querySelector('.fa-map-marker-alt')?.parentElement.querySelector('span')?.textContent.trim(),
+      preco:    card.querySelector('span[style*="color"]')?.textContent.trim(),
+      img:      (card.querySelector('[style*="background-image"]')?.style.backgroundImage || '')
+                  .replace(/^url\(["']?(.+?)["']?\)$/, '$1') || imgsCard[0],
+      fotos:    datasetFotos.length ? datasetFotos : imgsCard.slice(0, 12), // limita pra não exagerar
+      // campos extras opcionais:
+      quartos:  card.dataset.quartos,
+      metragem: card.dataset.metragem
+    };
+  }
+
+  // Delegação: abrir modal a partir do botão
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('.btn-detalhes');
+    if (!el) return;
+    e.preventDefault();
+    const data = extrairDoCard(el);
+    abrirModal(data);
+  });
+})();
+</script>
 
                 <!-- Property 2 -->
                 <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+<div class="h-48 bg-cover bg-center" style="background-image: url(IMG/img-terreno2.png);">                        
+    <div class="absolute inset-0 flex items-center justify-center">
                                 <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
                             </svg>
                         </div>
                         <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm">Novo</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Terreno em Paraty</h3>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Casa na serra de Cunha</h3>
                         <p class="text-gray-600 mb-4">Terreno plano de 1.200m² próximo ao centro histórico, ideal para construção</p>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -156,55 +496,79 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <div>
-                                <span class="text-2xl font-bold text-blue-600">R$ 380.000</span>
+                                <span class="text-2xl font-bold" style="color: #678e40;">R$ 380.000</span>
                                 <p class="text-sm text-gray-500">à vista</p>
                             </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                Ver detalhes
-                            </button>
+                            <button
+  class="text-white px-4 py-2 rounded-lg transition"
+  style="background-color: #678e40;"
+  onmouseover="this.style.backgroundColor='#567535'"
+  onmouseout="this.style.backgroundColor='#678e40'"
+>
+  Ver detalhes
+</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Property 3 -->
                 <div class="property-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sítio com Cachoeira</h3>
-                        <p class="text-gray-600 mb-4">Propriedade rural de 5 hectares com cachoeira privativa e casa sede</p>
-                        <div class="flex items-center text-gray-500 mb-4">
-                            <i class="fas fa-map-marker-alt mr-2"></i>
-                            <span>Cunha-SP</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-2xl font-bold text-blue-600">R$ 1.200.000</span>
-                                <p class="text-sm text-gray-500">negociável</p>
-                            </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                Ver detalhes
-                            </button>
+  
+  <!-- IMAGEM DO TERRENO (substitui o gradiente e ícone) -->
+  <div class="h-48 bg-cover bg-center" style="background-image: url('IMG/img-terreno1.png');"></div>
+
+  <!-- CONTEÚDO DO CARD -->
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sítio com Cachoeira</h3>
+    <p class="text-gray-600 mb-4">Propriedade rural de 5 hectares com cachoeira privativa e casa sede</p>
+
+    <!-- LOCALIZAÇÃO -->
+    <div class="flex items-center text-gray-500 mb-4">
+      <i class="fas fa-map-marker-alt mr-2"></i>
+      <span>Cunha-SP</span>
+    </div>
+
+    <!-- VALOR + BOTÃO -->
+    <div class="flex justify-between items-center">
+      <div>
+        <span class="text-2xl font-bold" style="color: #678e40;">R$ 1.200.000</span>
+        <p class="text-sm text-gray-500">negociável</p>
+      </div>
+
+      <!-- BOTÃO VER DETALHES COM COR VERDE -->
+      <button
+        class="text-white px-4 py-2 rounded-lg transition font-semibold"
+        style="background-color: #678e40;"
+        onmouseover="this.style.backgroundColor='#567535'"
+        onmouseout="this.style.backgroundColor='#678e40'"
+      >
+        Ver detalhes
+      </button>
+    </div>
+  </div>
+</div>
+
+                            
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-12">
-                <button class="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition font-semibold">
-                    Ver Todos os Imóveis
-                </button>
-            </div>
+  <button
+    class="text-white px-8 py-3 rounded-lg transition font-semibold"
+    style="background-color: #678e40;"
+    onmouseover="this.style.backgroundColor='#567535'"
+    onmouseout="this.style.backgroundColor='#678e40'"
+  >
+    Ver Todos os Imóveis
+  </button>
+</div>
         </div>
     </section>
 
     <!-- Advertise Section -->
-    <section id="anuncie" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <section id="anuncie" class="py-16 bg-gradient-to-br from-[#d4e8bb] to-[#a6a399]">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -216,43 +580,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-8">Por que escolher a MSK Imóveis?</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-calculator text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800 mb-2">Avaliação Profissional</h4>
-                                    <p class="text-gray-600">Análise completa do seu imóvel para definir o preço ideal de mercado</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-bullhorn text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800 mb-2">Divulgação Ampla</h4>
-                                    <p class="text-gray-600">Anúncio nos principais portais imobiliários e redes sociais</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-camera text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800 mb-2">Fotos e Vídeos Profissionais</h4>
-                                    <p class="text-gray-600">Material visual de alta qualidade para destacar seu imóvel</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-handshake text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800 mb-2">Acompanhamento Completo</h4>
-                                    <p class="text-gray-600">Suporte em todas as etapas da negociação até o fechamento</p>
-                                </div>
+                        
                             </div>
                         </div>
                     </div>
@@ -261,11 +589,11 @@
                         <h3 class="text-xl font-semibold text-gray-800 mb-6">Cadastre seu Imóvel</h3>
                         <form class="space-y-4">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="text" placeholder="Seu nome completo" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <input type="email" placeholder="Seu e-mail" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="text" placeholder="Nome completo" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="email" placeholder="E-mail" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="tel" placeholder="Seu telefone" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="tel" placeholder="Telefone" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                 <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                     <option>Tipo de negócio</option>
                                     <option>Venda</option>
@@ -297,9 +625,9 @@
                                 <p class="text-sm text-gray-500">Arraste arquivos aqui ou clique para selecionar</p>
                                 <input type="file" multiple accept="image/*" class="hidden">
                             </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
-                                Enviar Informações
-                            </button>
+                            <button type="submit" class="w-full text-white py-3 px-6 rounded-lg hover:bg-green-700 transition font-semibold" style="background-color: #678e40;">
+    Enviar Informações
+</button>
                         </form>
                         <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                             <p class="text-sm text-yellow-800">
@@ -335,13 +663,13 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Construtora MSK -->
-                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8">
+<div class="bg-gradient-to-br from-[#b4dad9] to-[#d7eced] rounded-2xl p-8">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center mr-4">
-                            <i class="fas fa-hard-hat text-white text-2xl"></i>
-                        </div>
+                        <div class="w-28 h-28 rounded-xl flex items-center justify-center mr-4">
+    <img src="IMG/construtora.png" alt="Logo Fortevale" class="w-full h-full object-contain rounded-xl">
+</div>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">Construtora MSK</h3>
+                            <h3 class="text-2xl font-bold text-gray-800">Construtora ForteVale</h3>
                             <p class="text-gray-600">Construção personalizada</p>
                         </div>
                     </div>
@@ -354,19 +682,19 @@
 
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-drafting-compass text-orange-600 mt-1"></i>
+                            <i class="fas fa-drafting-compass text-[#4aa19f] mt-1"></i>
                             <span class="text-gray-700">Projetos arquitetônicos personalizados</span>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-mountain text-orange-600 mt-1"></i>
+                            <i class="fas fa-mountain text-[#4aa19f] mt-1"></i>
                             <span class="text-gray-700">Especialização em construções serranas</span>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-tools text-orange-600 mt-1"></i>
+                            <i class="fas fa-tools text-[#4aa19f] mt-1"></i>
                             <span class="text-gray-700">Acompanhamento de obra completo</span>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-key text-orange-600 mt-1"></i>
+                            <i class="fas fa-key text-[#4aa19f] mt-1"></i>
                             <span class="text-gray-700">Entrega no prazo com qualidade garantida</span>
                         </div>
                     </div>
@@ -374,7 +702,7 @@
                     <div class="bg-white rounded-xl p-6 mb-6">
                         <h4 class="font-semibold text-gray-800 mb-3">Destaque Especial</h4>
                         <p class="text-gray-600 text-sm">
-                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            <i class="fas fa-star text-[#4aa19f]-500 mr-2"></i>
                             Construímos no terreno que você comprou através da MSK Imóveis, 
                             oferecendo um pacote completo para realizar seu sonho!
                         </p>
@@ -382,22 +710,31 @@
 
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div class="bg-white rounded-lg p-4 text-center">
-                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                                <i class="fas fa-home text-orange-600"></i>
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-2"
+     style="background-color: #c6e2df;">
+    <i class="fas fa-home" style="color: #4aa19f;"></i>
                             </div>
                             <p class="text-sm text-gray-600">Casas</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 text-center">
-                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                                <i class="fas fa-mountain text-orange-600"></i>
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-2"
+     style="background-color: #c6e2df;">
+    <i class="fas fa-mountain" style="color: #4aa19f;"></i>
                             </div>
                             <p class="text-sm text-gray-600">Chalés</p>
                         </div>
                     </div>
 
-                    <button class="w-full bg-orange-600 text-white py-3 px-6 rounded-lg hover:bg-orange-700 transition font-semibold">
-                        Solicitar Orçamento de Construção
-                    </button>
+                    <a href="https://wa.me/5512996588088?text=Olá! Gostaria de um orçamento para Construção."
+                     target="_blank"
+                    class="w-full inline-flex items-center justify-center text-white py-3 px-6 rounded-lg transition font-semibold"
+                     style="background-color: #4aa19f;"
+                     onmouseover="this.style.backgroundColor='#3d827d';"
+                     onmouseout="this.style.backgroundColor='#4aa19f';"
+                    >
+                    <i class="fab fa-whatsapp mr-2"></i>
+                     Orçamento Construtora
+                      </a>
                 </div>
 
                 <!-- Sonorização -->
@@ -512,9 +849,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-blue-100 rounded-2xl p-8">
+                    <div class="rounded-2xl p-8" style="background-color: #d4e8bb">
                         <div class="text-center">
-                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #678e40">
                                 <i class="fas fa-home text-white text-3xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-gray-800 mb-4">Nossa Missão</h3>
@@ -535,11 +872,12 @@
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Cunha & Paraty</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Cunha -->
-                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
-                            <i class="fas fa-mountain text-white text-xl"></i>
-                        </div>
+                <div class="rounded-2xl p-8" style="background-color: #d4e8bb;">
+    <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+            <i class="fas fa-mountain text-white text-xl"></i>
+        </div>
+
                         <h3 class="text-2xl font-bold text-gray-800">Cunha-SP</h3>
                     </div>
                     <p class="text-gray-700 mb-6">
@@ -604,7 +942,7 @@
                         <div class="space-y-4 mb-8">
                             <div class="flex items-center">
                                 <i class="fas fa-phone text-blue-600 mr-4 w-5"></i>
-                                <span class="text-gray-700">(12) 3111-2222</span>
+                                <span class="text-gray-700">(12) 99646-8088</span>
                             </div>
                             <div class="flex items-center">
                                 <i class="fas fa-envelope text-blue-600 mr-4 w-5"></i>
@@ -725,55 +1063,7 @@
             });
         });
 
-        // Search functionality
-        document.querySelector('.search-form button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Funcionalidade de busca ativada! Em um site real, isso filtraria os imóveis conforme os critérios selecionados.');
-        });
-
-        // Property details buttons
-        document.querySelectorAll('.property-card button').forEach(button => {
-            button.addEventListener('click', function() {
-                const propertyName = this.closest('.property-card').querySelector('h3').textContent;
-                alert(`Visualizando detalhes de: ${propertyName}\n\nEm um site real, isso abriria uma página com fotos, descrição completa, localização no mapa e informações detalhadas do imóvel.`);
-            });
-        });
-
-        // Contact form
-        document.querySelector('#contato form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.\n\nNota: Este é um formulário demonstrativo. Em um site real, seria necessário configurar um sistema backend para processar as mensagens.');
-        });
-
-        // Advertise form
-        document.querySelector('#anuncie form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Informações do imóvel enviadas com sucesso! Nossa equipe entrará em contato em breve para agendar a avaliação.\n\nNota: Este é um formulário demonstrativo.');
-        });
-
-        // Construction quote button
-        document.querySelector('.bg-orange-600').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Redirecionando para orçamento de construção!\n\nEm um site real, isso abriria um formulário específico ou direcionaria para WhatsApp com mensagem personalizada sobre construção.');
-        });
-
-        // File upload simulation
-        document.querySelector('#anuncie input[type="file"]').addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (files.length > 0) {
-                alert(`${files.length} foto(s) selecionada(s)!\n\nEm um site real, as fotos seriam enviadas para o servidor e processadas.`);
-            }
-        });
-
-        // Upload area click
-        document.querySelector('#anuncie .border-dashed').addEventListener('click', function() {
-            document.querySelector('#anuncie input[type="file"]').click();
-        });
-
-        // Mobile menu toggle (basic implementation)
-        document.querySelector('header button').addEventListener('click', function() {
-            alert('Menu mobile ativado! Em uma implementação completa, isso abriria um menu lateral responsivo.');
-        });
+        
 
         // Add scroll effect to header
         window.addEventListener('scroll', function() {
@@ -785,5 +1075,6 @@
             }
         });
     </script>
+    
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9668d6efa36a1595',t:'MTc1Mzc1MjUwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
